@@ -16,6 +16,11 @@
 	<description>Code challenge with spring boot</description>
 	<properties>
 		<java.version>11</java.version>
+		<db.host>127.0.0.1</db.host>
+		<db.user>sa</db.user>
+		<db.pass>_Adm1n.2</db.pass>
+		<db.port>1433</db.port>
+		<db.name>master</db.name>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -50,7 +55,7 @@
 		<dependency>
 			<groupId>com.microsoft.sqlserver</groupId>
 			<artifactId>mssql-jdbc</artifactId>
-			<scope>runtime</scope>
+			<version>9.2.0.jre11</version>
 		</dependency>
 		<dependency>
 			<groupId>org.projectlombok</groupId>
@@ -71,6 +76,17 @@
 
 	<build>
 		<plugins>
+			<plugin>
+				<groupId>org.flywaydb</groupId>
+				<artifactId>flyway-maven-plugin</artifactId>
+				<version>8.4.4</version>
+				<configuration>
+					<driver>com.microsoft.sqlserver.jdbc.SQLServerDriver</driver>
+					<user>${db.user}</user>
+					<password>${db.pass}</password>
+					<url>jdbc:sqlserver://${db.host}:${db.port};databaseName=${db.name}</url>
+				</configuration>
+			</plugin>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
