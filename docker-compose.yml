@@ -1,0 +1,8 @@
+version: "3"
+services:
+  db:
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    ports: ["1433:1433"]
+    environment:
+      SA_PASSWORD: "_Adm1n.2"
+      ACCEPT_EULA: "Y"
